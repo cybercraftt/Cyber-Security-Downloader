@@ -1,4 +1,4 @@
-# Cyber Security Downloader 🛡️
+# Cyber Security Downloader Pro 🛡️
 
 Портативная утилита с открытым исходным кодом для автоматической загрузки, проверки обновлений и запуска антивирусных сканеров (**Dr.Web CureIt!** и **AdwCleaner**).
 
@@ -31,5 +31,5 @@
 
 1. Клонируйте репозиторий:
    ```bash
-   git clone [https://github.com/ваш-логин/ваш-репозиторий.git](https://github.com/ваш-логин/ваш-репозиторий.git)
-   cd ваш-репозиторий
+   git clone [https://github.com/cybercraftt/Cyber-Security-Downloader.git](https://github.com/cybercraftt/Cyber-Security-Downloader.git)
+   cd Cyber-Security-Downloader
