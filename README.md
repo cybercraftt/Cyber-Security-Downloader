@@ -33,26 +33,5 @@
    ```bash
    git clone [https://github.com/cybercraftt/Cyber-Security-Downloader.git](https://github.com/cybercraftt/Cyber-Security-Downloader.git)
    cd Cyber-Security-Downloader
-
-   Установите зависимости:
-
-Bash
-
-
-pip install customtkinter
-Запустите программу:
-
-Bash
-
-
-python main.py
-🧡 Поддержка проекта и эксклюзивы (Boosty)
-Если вам нравится проект и вы хотите поддержать его развитие, подписывайтесь на мой Boosty!
-
-На странице Boosty вы найдёте:
-
-Ранний доступ к новым утилитам и обновлениям.
-
-Прямые ссылки на готовые .exe сборки.
-
-Эксклюзивный контент и возможность влиять на разработку новых проектов.
+   ```bash
+   2. Установите зависимости:
