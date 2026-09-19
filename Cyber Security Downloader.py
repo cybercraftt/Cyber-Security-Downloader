@@ -53,6 +53,7 @@ TRANSLATIONS = {
         "btn_open_folder": "Открыть папку",
         "path_label": "Папка для сохранения:",
         "path_switch": "Использовать папку Downloads рядом с программой",
+        "sound_switch": "Звуковое уведомление по окончании загрузки",
         "browse_btn": "Обзор...",
         "support_project": "Поддержка проекта",
         "browse_dialog_title": "Выберите папку для сохранения",
@@ -92,6 +93,7 @@ TRANSLATIONS = {
         "btn_open_folder": "Open Folder",
         "path_label": "Save folder:",
         "path_switch": "Use Downloads folder next to application",
+        "sound_switch": "Play sound on completion",
         "browse_btn": "Browse...",
         "support_project": "Support Project",
         "browse_dialog_title": "Select Save Directory",
@@ -131,6 +133,7 @@ TRANSLATIONS = {
         "btn_open_folder": "Abrir carpeta",
         "path_label": "Carpeta de guardado:",
         "path_switch": "Usar carpeta Downloads junto a la aplicación",
+        "sound_switch": "Sonido al finalizar la descarga",
         "browse_btn": "Examinar...",
         "support_project": "Apoyar el proyecto",
         "browse_dialog_title": "Seleccionar carpeta de guardado",
@@ -170,6 +173,7 @@ TRANSLATIONS = {
         "btn_open_folder": "Ordner öffnen",
         "path_label": "Speicherpfad:",
         "path_switch": "Downloads-Ordner neben dem Programm verwenden",
+        "sound_switch": "Ton bei Fertigstellung abspielen",
         "browse_btn": "Durchsuchen...",
         "support_project": "Projekt unterstützen",
         "browse_dialog_title": "Speicherordner auswählen",
@@ -209,6 +213,7 @@ TRANSLATIONS = {
         "btn_open_folder": "Ouvrir le dossier",
         "path_label": "Dossier d'enregistrement :",
         "path_switch": "Utiliser le dossier Downloads à côté du programme",
+        "sound_switch": "Signal sonore à la fin du téléchargement",
         "browse_btn": "Parcourir...",
         "support_project": "Soutenir le projet",
         "browse_dialog_title": "Sélectionner le dossier d'enregistrement",
@@ -248,6 +253,7 @@ TRANSLATIONS = {
         "btn_open_folder": "打开文件夹",
         "path_label": "保存路径:",
         "path_switch": "使用程序旁边的 Downloads 文件夹",
+        "sound_switch": "下载完成时播放提示音",
         "browse_btn": "浏览...",
         "support_project": "支持项目",
         "browse_dialog_title": "选择保存文件夹",
@@ -287,6 +293,7 @@ TRANSLATIONS = {
         "btn_open_folder": "Abrir pasta",
         "path_label": "Pasta de destino:",
         "path_switch": "Usar pasta Downloads junto ao aplicativo",
+        "sound_switch": "Tocar som ao concluir o download",
         "browse_btn": "Procurar...",
         "support_project": "Apoiar o projeto",
         "browse_dialog_title": "Selecionar pasta de destino",
@@ -326,6 +333,7 @@ TRANSLATIONS = {
         "btn_open_folder": "フォルダを開く",
         "path_label": "保存先フォルダ:",
         "path_switch": "アプリと同じ場所の Downloads フォルダを使用",
+        "sound_switch": "ダウンロード完了時に an 音声を再生",
         "browse_btn": "参照...",
         "support_project": "プロジェクトを支援",
         "browse_dialog_title": "保存先フォルダを選択",
@@ -394,7 +402,8 @@ UTILITIES = {
 DEFAULT_SETTINGS = {
     "last_utility": "Dr.Web CureIt!",
     "downloads_folder": "Downloads",
-    "language": "🇷🇺 Русский"
+    "language": "🇷🇺 Русский",
+    "sound_enabled": True
 }
 
 def get_base_dir():
@@ -503,7 +512,7 @@ class CyberDownloaderApp(ctk.CTk):
             except Exception:
                 pass
 
-        self.center_window(490, 590)
+        self.center_window(490, 615)
         self.setup_ui()
 
         saved_folder = self.config.get("downloads_folder")
@@ -596,7 +605,7 @@ class CyberDownloaderApp(ctk.CTk):
         )
         self.info_label.pack(pady=(1, 6))
 
-        # Настройка папки
+        # Настройка папки и звука
         settings_frame = ctk.CTkFrame(self, fg_color="transparent")
         settings_frame.pack(padx=14, fill="x", pady=0)
 
@@ -620,7 +629,19 @@ class CyberDownloaderApp(ctk.CTk):
             text_color="#9CA3AF",
             command=self.toggle_path_mode
         )
-        self.same_folder_checkbox.pack(anchor="w", padx=6, pady=(1, 4))
+        self.same_folder_checkbox.pack(anchor="w", padx=6, pady=(1, 2))
+
+        self.sound_enabled_var = ctk.BooleanVar(value=self.config.get("sound_enabled"))
+        self.sound_checkbox = ctk.CTkSwitch(
+            path_card,
+            text=self.tr("sound_switch"),
+            variable=self.sound_enabled_var,
+            font=("Segoe UI", 10),
+            progress_color=self.ACCENT_COLOR,
+            text_color="#9CA3AF",
+            command=self.toggle_sound_mode
+        )
+        self.sound_checkbox.pack(anchor="w", padx=6, pady=(1, 4))
 
         self.path_input_frame = ctk.CTkFrame(path_card, fg_color="transparent")
         self.path_input_frame.pack(fill="x", padx=6, pady=(0, 2))
@@ -747,6 +768,7 @@ class CyberDownloaderApp(ctk.CTk):
         self.config.set("language", new_lang)
         self.path_label.configure(text=self.tr("path_label"))
         self.same_folder_checkbox.configure(text=self.tr("path_switch"))
+        self.sound_checkbox.configure(text=self.tr("sound_switch"))
         self.browse_button.configure(text=self.tr("browse_btn"))
         self.action_button.configure(text=self.tr("btn_run"))
         self.open_folder_button.configure(text=self.tr("btn_open_folder"))
@@ -876,7 +898,13 @@ class CyberDownloaderApp(ctk.CTk):
         self.check_existing_file()
         self.check_remote_updates_async()
 
+    def toggle_sound_mode(self):
+        self.config.set("sound_enabled", self.sound_enabled_var.get())
+
     def play_sound(self, sound_type="success"):
+        if not self.config.get("sound_enabled"):
+            return
+
         if sys.platform == "win32":
             if sound_type == "success":
                 sound_path = get_resource_path("alert.wav")
