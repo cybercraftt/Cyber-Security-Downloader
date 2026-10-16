@@ -604,10 +604,6 @@ LICENSE
 
 Если Cyber Security Downloader оказался полезным, вы можете поддержать развитие проекта.
 
-**Boosty:**
-
-https://boosty.to/cyber_craft
-
 Поддержка полностью добровольная и помогает развивать новые небольшие утилиты и улучшать существующие проекты.
 
 ---
@@ -618,7 +614,7 @@ https://boosty.to/cyber_craft
 
 * 📺 **YouTube** — https://www.youtube.com/channel/UCcGfKjP4XdfkLokNgVOIAyA
 * 💬 **Telegram** — https://t.me/CyberCraftLab
-* 🧡 **Boosty** — https://boosty.to/cyber_craft
+* 🧡 **Boosty** — https://boosty.to/dufna
 
 ---
 
