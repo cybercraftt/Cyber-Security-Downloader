@@ -606,10 +606,6 @@ file for details.
 
 If Cyber Security Downloader is useful to you, you can support the development of the project.
 
-**Boosty:**
-
-https://boosty.to/cyber_craft
-
 Support is completely voluntary and helps with the development of new small utilities and improvements to existing projects.
 
 ---
@@ -620,7 +616,7 @@ Follow the project and discover new tools:
 
 * 📺 **YouTube** - https://www.youtube.com/channel/UCcGfKjP4XdfkLokNgVOIAyA
 * 💬 **Telegram** - https://t.me/CyberCraftLab
-* 🧡 **Boosty** - https://boosty.to/cyber_craft
+* 🧡 **Boosty** - https://boosty.to/dufna
 
 ---
 
